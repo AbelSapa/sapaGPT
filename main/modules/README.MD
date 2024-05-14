@@ -1,0 +1,1 @@
+Conté alguns notebooks passats a .py ja que en moments de documentació d'algunes de les funcions les necessitem i no podem importar Notebooks.
