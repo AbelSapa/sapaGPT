@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SapaGPT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="static\\css\\style.css" media="screen" />
+</head>
+
+<body>
+  <div>
+    <div id="particles-js"></div>
+
+    <h1 align="center" class="p-2"><b>SapaGPT</b></h1>
+    <p align="center"><small align="center">Based on GPT2 model from OpenAI</small></p>
+    <h4 align="center" class="pb-5"><b>Please start your personalized interaction with the chatbot</b></h4>
+
+    <div class="message-container mx-auto">
+      <div class="chat rounded_25">
+        <p align="center"><img src="static\\chatbot1.png" alt="Python-BOT" height="150" width="170"></p>
+        <hr class="w-75 mx-auto bg-white">
+        <div>
+          <div id="chatbox">
+            <p class="botText">
+              <span>Hi! I'm SapaGPT, how can I help you?</span>
+            </p>
+            
+          </div>
+          <div id="userInput" class="form-group">
+            <input id="textInput" class="form-control rounded_10" type="text" name="msg" placeholder="Message" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <script>
+      var isGenerating = false;
+      $(document).ready(function () {
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          $("#textInput").prop('disabled', true);
+          document.getElementById("chatbox").lastElementChild.scrollIntoView({ block: "start", behavior: "smooth" });
+
+          animateGeneratingText();
+          $.get("/get", { msg: rawText }).done(function (data) {
+            isGenerating = false;
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document.getElementById("chatbox").lastElementChild.scrollIntoView({ block: "start", behavior: "smooth" });
+            $("#textInput").prop('disabled', false);
+          });
+        }
+        function animateGeneratingText() {
+          isGenerating = true;
+          var text = "Generating";
+
+          var dot = "...";
+
+          var index = 0;
+
+          var dotIndex = 0;
+
+          $("#textInput").val("");
+
+          var interval = setInterval(function () {
+            if (!isGenerating) {
+              clearInterval(interval);
+              $("#textInput").val("");
+              return;
+            }
+            if (index < text.length) {
+              $("#textInput").val($("#textInput").val() + text[index]);
+              index++;
+            } else {
+              $("#textInput").val(text + dot.substring(0, dotIndex + 1));
+              dotIndex = (dotIndex + 1) % dot.length;
+            }
+          }, 200); // Animation speed 
+        }
+
+        $("#textInput").keypress(function (e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      });
+    </script>
+    <script src="static/js/particles.js"></script>
+    <script src="static/js/particulas.js"></script>
+  </div>
+  </div>
+</body>
+
+</html>
