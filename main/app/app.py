@@ -20,3 +20,7 @@ def get_bot_response():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # app.run(host='10.98.1.9',port=80,debug=True)
+
+    #FOR PRODUCTION DESPLEGATION
+    #sapaGPT\main\app> waitress-serve --host 10.98.1.9 --port 80 app:app

@@ -4,6 +4,7 @@ requests==2.27.1 # used to download gpt-2 files from openai
 tqdm==4.64.0 # progress bar to keep your sanity
 fire==0.5.0 # easy CLI creation
 flask # For Python Web Page and bot interaction.
+waitress #For Flask Production
 
 # used to load the gpt-2 weights from the open-ai tf checkpoint
 # M1 Macbooks require tensorflow-macos

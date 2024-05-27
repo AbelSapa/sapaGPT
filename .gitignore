@@ -1,4 +1,5 @@
 main/models
+main/app/__pycache__
 main/app/model/SapaGPT/__pycache__
 
 
