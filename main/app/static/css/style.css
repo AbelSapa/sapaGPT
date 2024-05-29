@@ -14,6 +14,7 @@ html, body {
     margin: 0;
 }
 
+/*FONS DE PARTÍCULES*/
 #particles-js {
     height: 100vh;
     width: 100%;
@@ -29,6 +30,7 @@ html, body {
     border-radius: 10px;
 }
 
+/*CONTENIDOR FLEX PRINCIPAL */
 .message-container {
     display: flex !important;
     justify-content: center;
@@ -44,7 +46,7 @@ html, body {
     font-size: 15px;
     font-weight: bold;
     
-    word-wrap: break-word; /* O puedes usar word-break: break-all; */
+    word-wrap: break-word;
 }
 .chat {
     background-color: #1a283fad;
@@ -54,6 +56,7 @@ html, body {
     padding: 2%;
 }
 
+/*El DIV del Chat, generem un scroll si sobrepassa el max-height*/
 #chatbox {
     max-height: 25vh;
     margin-left: auto;
@@ -79,8 +82,8 @@ html, body {
     border: none;
     font-family: monospace;
     font-size: 17px;
-
 }
+
 .userText {
 color: white;
 font-family: monospace;
@@ -106,6 +109,8 @@ background-color: #4169e1;
 padding: 10px;
 border-radius: 10px;
 }
+
+/*ESTIL DEL SCROLL*/
 
 .chat::-webkit-scrollbar {
     width: 12px;
